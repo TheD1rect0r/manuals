@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インカム応答完全マニュアル</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #5F9EA0 0%, #4682B4 50%, #708090 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .slide {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            min-height: auto;
+            display: block;
+        }
+        .slide h1 {
+            color: #2F4F4F;
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 4px solid #5F9EA0;
+            padding-bottom: 20px;
+            font-weight: bold;
+        }
+        .slide h2 {
+            color: #B22222;
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .slide h3 {
+            color: #2F4F4F;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .important-box {
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+            border: 3px solid #5F9EA0;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(95, 158, 160, 0.2);
+        }
+        .danger-box {
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F0 100%);
+            border: 3px solid #CD5C5C;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(205, 92, 92, 0.2);
+        }
+        .success-box {
+            background: linear-gradient(135deg, #F0FFF0 0%, #E6FFE6 100%);
+            border: 3px solid #3CB371;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(60, 179, 113, 0.2);
+        }
+        .big-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            color: #2F4F4F;
+            line-height: 1.6;
+        }
+        .very-big-text {
+            font-size: 2.8em;
+            font-weight: bold;
+            text-align: center;
+            color: #B22222;
+            line-height: 1.3;
+        }
+        .law-box {
+            background: linear-gradient(135deg, #F0F8FF 0%, #E0F6FF 100%);
+            border: 3px solid #4682B4;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(70, 130, 180, 0.2);
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #F8F8FF 0%, #F0F8FF 100%);
+            border-left: 5px solid #5F9EA0;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(95, 158, 160, 0.1);
+        }
+        .dialogue-box {
+            background: linear-gradient(135deg, #F5F5F5 0%, #FAFAFA 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #708090;
+            box-shadow: 0 2px 10px rgba(112, 128, 144, 0.1);
+        }
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #5F9EA0 0%, #4682B4 50%, #708090 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .password-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            border: 2px solid rgba(95, 158, 160, 0.3);
+        }
+        .password-title {
+            color: #2F4F4F;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .password-subtitle {
+            color: #5F9EA0;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        .password-input {
+            width: 100%;
+            padding: 18px 20px;
+            font-size: 1.2em;
+            border: 2px solid #5F9EA0;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+        .password-input:focus {
+            outline: none;
+            border-color: #4682B4;
+            box-shadow: 0 0 15px rgba(95, 158, 160, 0.3);
+            background: white;
+        }
+        .password-button {
+            background: linear-gradient(135deg, #5F9EA0 0%, #4682B4 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2em;
+            border-radius: 15px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(95, 158, 160, 0.3);
+        }
+        .password-button:hover {
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(95, 158, 160, 0.4);
+        }
+        .password-error {
+            color: #B22222;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1em;
+        }
+        .navigation {
+            display: none;
+        }
+        .slide-number {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: linear-gradient(135deg, #5F9EA0 0%, #4682B4 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(95, 158, 160, 0.3);
+        }
+        .highlight {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #2F4F4F;
+        }
+        ul {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .hidden {
+            display: none;
+        }
+        
+        /* 基本テキストサイズの統一 */
+        .slide p, .slide div:not(.big-text):not(.very-big-text) {
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+        
+        /* レスポンシブ対応 - 横解像度に応じてフォントサイズを細かく調整 */
+        @media (max-width: 480px) {
+            .slide {
+                padding: 15px;
+                margin: 10px 0;
+                min-height: auto;
+            }
+            .slide h1, .slide h2, .very-big-text {
+                font-size: 1.5em;
+                line-height: 1.2;
+            }
+            .slide h3, .big-text, ul, .slide p, .slide div:not(.big-text):not(.very-big-text) {
+                font-size: 0.9em;
+                line-height: 1.5;
+            }
+            .important-box, .danger-box, .success-box, .law-box {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            .flow-step, .dialogue-box {
+                padding: 15px;
+                margin: 10px 0;
+            }
+        }
+        
+        @media (min-width: 481px) and (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 15px 0;
+                min-height: auto;
+            }
+            .slide h1, .slide h2, .very-big-text {
+                font-size: 2em;
+                line-height: 1.2;
+            }
+            .slide h3, .big-text, ul, .slide p, .slide div:not(.big-text):not(.very-big-text) {
+                font-size: 1em;
+                line-height: 1.6;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .slide {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- パスワード入力画面 -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-box">
+            <div class="password-title">🔐 認証が必要です</div>
+            <div class="password-subtitle">インカム応答マニュアル（関係者専用）</div>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Macのログインパスワードを入力" autocomplete="off">
+            <button onclick="checkPassword()" class="password-button">アクセス</button>
+            <div id="passwordError" class="password-error hidden">アクセスコードが正しくありません</div>
+        </div>
+    </div>
+
+    <div class="container" id="mainContent" style="display: none;">
+        <!-- スライド1: タイトル -->
+        <div class="slide" id="slide1">
+            <div class="slide-number">1/12</div>
+            <h1>インカム応答<br>完全マニュアル</h1>
+            <div class="very-big-text">
+                これだけ覚えれば<br>
+                完璧！
+            </div>
+            <div class="important-box">
+                <div class="big-text">
+                    法的根拠に基づく<br>
+                    インカム対応の考え方
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド2: インカム応答のルール -->
+        <div class="slide" id="slide2">
+            <div class="slide-number">2/12</div>
+            <h2>📻 インカム応答のルール</h2>
+            <div class="very-big-text">
+                ワンコールで応答！
+            </div>
+            <div class="danger-box">
+                <h3>🚨 例外はこの3つだけ</h3>
+                <ul>
+                    <li><strong>眼の前で患者が急変している（＝いますぐ心マが必要なレベル）</strong><br>
+                    → インカムより心マを優先してください</li>
+                    <li><strong>そこまでではないが、患者の状態が悪い時</strong><br>
+                    → むしろ従業員側から「患者さんの状態が悪いです」のインカムを医師に報連相して、医師の指示を求めてください</li>
+                    <li><strong>すでに注射や点滴で針をさしてしまっている最中や、モストグラフなどの検査が進行中である</strong><br>
+                    → インカムより採血や検査を優先してください。それが終わったら「すみません。採血やっていて（モストやっていて）応答が遅れました」と応答してください</li>
+                </ul>
+            </div>
+            <div class="success-box">
+                <div style="font-size: 2.8em; font-weight: bold; text-align: center; color: #B22222; line-height: 1.3; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    これ以外はすべて<br>
+                    「インカム優先」
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド3: 法的根拠 -->
+        <div class="slide" id="slide3">
+            <div class="slide-number">3/12</div>
+            <h2>⚖️ 法的根拠</h2>
+            <div class="law-box">
+                <h3>📚 関連法律</h3>
+                <ul>
+                    <li><strong>医療法第7条</strong>：医師が医療機関の管理責任者</li>
+                    <li><strong>医師法第17条</strong>：医療行為は医師の専権事項<br>
+                    <span class="highlight">⇒医療機関で、指示、命令を出せる権限は医師にしかない</span></li>
+                    <li><strong>労働契約法第3条</strong>：労働者は誠実に働く義務</li>
+                </ul>
+            </div>
+            <div class="important-box">
+                <div class="big-text">
+                    これら法律をまとめると<br>
+                    <strong>医療機関における医師以外の全職種は、医師の指示を実行するのが使命</strong>
+                </div>
+            </div>
+            <div class="success-box">
+                <div class="big-text">
+                    医師の指示を伝える手段であるインカムへの応答は、<br>
+                    優先すべき重要業務です
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド4: 簡単な例え話 -->
+        <div class="slide" id="slide4">
+            <div class="slide-number">4/12</div>
+            <h2>📊 簡単な例え話</h2>
+            <div class="big-text">会社と同じです</div>
+            <div style="display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; gap: 50px; margin: 40px 0;">
+                <div style="flex: 1; min-width: 300px; text-align: center;">
+                    <h3 style="color: #2F4F4F; margin-bottom: 30px; font-size: 1.5em;">一般企業</h3>
+                    <div style="position: relative; width: 250px; height: 250px; margin: 0 auto;">
+                        <!-- ピラミッド本体 -->
+                        <div style="background: linear-gradient(to bottom, #4682B4 0%, #4682B4 25%, #5F9EA0 25%, #5F9EA0 50%, #3CB371 50%, #3CB371 75%, #2E8B57 75%, #2E8B57 100%); 
+                                    width: 250px; height: 250px; position: absolute; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                        <!-- テキストオーバーレイ -->
+                        <div style="position: absolute; top: 15%; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 1.1em; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); z-index: 10;">社長</div>
+                        <div style="position: absolute; top: 35%; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 1.1em; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); z-index: 10;">部長</div>
+                        <div style="position: absolute; top: 55%; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 1.1em; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); z-index: 10;">課長</div>
+                        <div style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 1.1em; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); z-index: 10;">一般職員</div>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 300px; text-align: center;">
+                    <h3 style="color: #2F4F4F; margin-bottom: 30px; font-size: 1.5em;">医療機関</h3>
+                    <div style="position: relative; width: 250px; height: 250px; margin: 0 auto;">
+                        <!-- ピラミッド本体 -->
+                        <div style="background: linear-gradient(to bottom, #B22222 0%, #B22222 50%, #708090 50%, #708090 100%); 
+                                    width: 250px; height: 250px; position: absolute; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                        <!-- テキストオーバーレイ -->
+                        <div style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 1.3em; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); z-index: 10;">医師</div>
+                        <div style="position: absolute; top: 65%; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 1em; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); z-index: 10; line-height: 1.2;">医師以外の<br>全職種</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド5: 重要ポイント -->
+        <div class="slide" id="slide5">
+            <div class="slide-number">5/12</div>
+            <h2>🚨 重要ポイント 🚨</h2>
+            <div class="danger-box">
+                <div class="very-big-text">
+                    これは人格差別では<br>ありません！
+                </div>
+            </div>
+            <div class="success-box">
+                <div class="big-text">
+                    <span class="highlight">あくまで組織の指揮命令系統の話です</span><br>
+                    <span class="highlight">人間としてはみんな対等です</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド6: あなたの仕事 -->
+        <div class="slide" id="slide6">
+            <div class="slide-number">6/12</div>
+            <h2>💼 あなたの仕事</h2>
+            <div class="very-big-text">
+                医師の指示を聞いて<br>
+                実行すること
+            </div>
+            <div class="success-box">
+                <div class="big-text">
+                    これがあなたの<br>
+                    <span class="highlight">医療機関に勤務する者としての役割</span>
+                </div>
+            </div>
+            <div class="very-big-text">
+                医師の指示を伝える手段である<br>
+                インカムへの応答は、<br>
+                優先すべき重要業務です
+            </div>
+        </div>
+
+        <!-- スライド7: 状況別判定 -->
+        <div class="slide" id="slide7">
+            <div class="slide-number">7/12</div>
+            <h2>🔍 状況別判定</h2>
+            <div class="success-box">
+                <h3>✅ 手が空いている人＝即座にインカム応答すべき人</h3>
+                <ul>
+                    <li>何もしていない</li>
+                    <li>簡単な整理作業しかしていない</li>
+                </ul>
+            </div>
+            <div class="important-box">
+                <h3>⚠️ 手が空いている人がいない場合「も」以下の優先順位で応答</h3>
+                <div style="color: #B22222; font-weight: bold; font-size: 1.1em; margin: 15px 0;">
+                    〇〇しているから応答できません、は許可しません
+                </div>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 1.1em;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #5F9EA0 0%, #4682B4 100%); color: white;">
+                            <th style="padding: 15px; border: 2px solid #5F9EA0; text-align: center; font-weight: bold;">優先順位</th>
+                            <th style="padding: 15px; border: 2px solid #5F9EA0; text-align: center; font-weight: bold;">状況</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #F0F8FF;">
+                            <td style="padding: 15px; border: 2px solid #5F9EA0; text-align: center; font-weight: bold; color: #B22222;">第一優先</td>
+                            <td style="padding: 15px; border: 2px solid #5F9EA0; text-align: center;">データ入力中</td>
+                        </tr>
+                        <tr style="background: #F8F8FF;">
+                            <td style="padding: 15px; border: 2px solid #5F9EA0; text-align: center; font-weight: bold; color: #B22222;">第二優先</td>
+                            <td style="padding: 15px; border: 2px solid #5F9EA0; text-align: center;">窓口対応中</td>
+                        </tr>
+                        <tr style="background: #F0F8FF;">
+                            <td style="padding: 15px; border: 2px solid #5F9EA0; text-align: center; font-weight: bold; color: #B22222;">第三優先</td>
+                            <td style="padding: 15px; border: 2px solid #5F9EA0; text-align: center;">電話対応中</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- スライド8: 具体的なセリフ集 -->
+        <div class="slide" id="slide8">
+            <div class="slide-number">8/12</div>
+            <h2>🎭 具体的なセリフ集</h2>
+            <div class="dialogue-box">
+                <h3>🏥 窓口対応中の場合（第二優先）</h3>
+                <strong>中断時：</strong><br>
+                「たいへん申し訳ございません。院長から無線で緊急の指示が入ったので、少々お待ちくださいませ」<br><br>
+                <strong>復帰時：</strong><br>
+                「お待たせしてたいへん申し訳ございませんでした。続きをご案内させていただきます」
+            </div>
+            <div class="dialogue-box">
+                <h3>📞 電話対応中の場合（第三優先）</h3>
+                <strong>中断時：</strong><br>
+                「たいへん申し訳ございません。院長から無線で緊急の指示が入ったので、少々お待ちくださいませ」<br><br>
+                <strong>復帰時：</strong><br>
+                「お待たせしてたいへん申し訳ございませんでした。続きをお聞かせくださいませ」
+            </div>
+            <div class="important-box">
+                <div class="big-text">
+                    患者さんにもしっかり状況を説明して、<br>
+                    インカム応答してください。<br>
+                    しっかり説明すれば、患者さんはわかってくれます
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド9: 複数人いる場合 -->
+        <div class="slide" id="slide9">
+            <div class="slide-number">9/12</div>
+            <h2>👥 複数人いる場合</h2>
+            <div class="flow-step">
+                <strong>Step 1：</strong> 空いている人がいる？
+                <br>→ <span class="highlight">空いている人が即座に応答</span>
+            </div>
+            <div class="flow-step">
+                <strong>Step 2：</strong> 全員忙しい？
+                <br>→ <span class="highlight">優先順位で応答</span>
+                <ul>
+                    <li>第一優先：データ入力中の人</li>
+                    <li>第二優先：窓口対応中の人</li>
+                    <li>第三優先：電話対応中の人</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド10: よくある質問 -->
+        <div class="slide" id="slide10">
+            <div class="slide-number">10/12</div>
+            <h2>❓ よくある質問</h2>
+            <div class="dialogue-box">
+                <strong>Q：これって差別じゃないの？</strong><br>
+                A：違います！あくまで仕事中の指揮命令系統の話です。職務以外のあらゆる場面で、個人個人は対等です。仕事中のみ指揮命令系統に従ってください。
+            </div>
+            <div class="dialogue-box">
+                <strong>Q：なんで医師の指示に従わなければいけないの？</strong><br>
+                A：医療機関はそういう指揮命令系統であると、法律で決まっているからです。
+            </div>
+        </div>
+
+        <!-- スライド11: 絶対に覚えること -->
+        <div class="slide" id="slide11">
+            <div class="slide-number">11/12</div>
+            <h2>🎯 絶対に覚えること</h2>
+            <div class="very-big-text">
+                3つだけ！
+            </div>
+            <div class="success-box">
+                <div class="big-text">
+                    ① インカムが鳴ったら<br>
+                    　 <span class="highlight">ワンコールで応答</span>
+                </div>
+            </div>
+            <div class="success-box">
+                <div class="big-text">
+                    ② 患者対応中のインカム応答時には<br>
+                    　 <span class="highlight">セリフ例を参考にして患者さんに状況をしっかり説明</span>
+                </div>
+            </div>
+            <div class="success-box">
+                <div class="big-text">
+                    ③ これは<br>
+                    　 <span class="highlight">法的に正しい業務</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド12: まとめ -->
+        <div class="slide" id="slide12">
+            <div class="slide-number">12/12</div>
+            <h2>🎊 まとめ</h2>
+            <div class="very-big-text">
+                簡単です！
+            </div>
+            <div class="important-box">
+                <div class="big-text">
+                    インカムが鳴る<br>
+                    ↓<br>
+                    すぐに応答<br>
+                    ↓<br>
+                    医師の指示を実行する
+                </div>
+            </div>
+            <div class="success-box">
+                <div class="big-text">
+                    これで完璧！<br>
+                    お疲れ様でした！
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // パスワード認証（iOS対応強化版）
+        const validPasswords = ['ap818', 'AP818'];
+        
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('passwordError');
+            const overlay = document.getElementById('passwordOverlay');
+            const content = document.getElementById('mainContent');
+            
+            if (validPasswords.includes(input.value)) {
+                // iOS対応: より確実な表示制御
+                overlay.style.display = 'none';
+                overlay.style.visibility = 'hidden';
+                content.style.display = 'block';
+                content.style.visibility = 'visible';
+                
+                // パスワード成功後にスライドを表示
+                setTimeout(function() {
+                    const slides = document.querySelectorAll('.slide');
+                    slides.forEach(slide => {
+                        slide.style.display = 'block';
+                        slide.style.visibility = 'visible';
+                    });
+                }, 100);
+            } else {
+                error.classList.remove('hidden');
+                error.style.display = 'block';
+                input.value = '';
+                
+                // iOS対応: フォーカスを遅延実行
+                setTimeout(function() {
+                    input.focus();
+                }, 100);
+            }
+        }
+        
+        // Enterキーでログイン（iOS対応）
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('passwordInput');
+            
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.keyCode === 13) {
+                    e.preventDefault();
+                    checkPassword();
+                }
+            });
+            
+            // iOS対応: タッチイベントも追加
+            passwordInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter' || e.keyCode === 13) {
+                    checkPassword();
+                }
+            });
+            
+            // ページ読み込み時にパスワード入力にフォーカス（iOS対応）
+            setTimeout(function() {
+                passwordInput.focus();
+                passwordInput.click(); // iOS用のフォーカストリガー
+            }, 500);
+        });
+        
+        // iOS用の追加イベントリスナー
+        window.addEventListener('load', function() {
+            // 初期状態の確保
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('passwordOverlay').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
